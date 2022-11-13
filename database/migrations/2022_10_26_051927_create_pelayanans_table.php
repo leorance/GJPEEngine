@@ -14,11 +14,11 @@ class CreatePelayanansTable extends Migration
     public function up()
     {
         Schema::create('pelayanan', function (Blueprint $table) {
-            $table->string('id_pel',4)->primary();
-            $table->string('id_user',4);
+            $table->string('id_pel',200)->primary();
+            $table->string('id_nama',4);
             $table->string('id_kelas',4);
             $table->string('id_talent',4);
-            $table->foreign('id_user')->references('id_user')->on('users');
+            $table->foreign('id_nama')->references('id_nama')->on('unames');
             $table->foreign('id_kelas')->references('id_kelas')->on('classes');
             $table->foreign('id_talent')->references('id_talent')->on('talents');
             $table->date('tanggal_pelayanan');

@@ -14,7 +14,7 @@ class Pelayanan extends Model
     protected $table = 'pelayanan';
     protected $fillable = [
                            'id_pel',
-                           'id_user',
+                           'id_nama',
                            'id_talent',
                            'id_kelas',
                            'tanggal_pelayanan'

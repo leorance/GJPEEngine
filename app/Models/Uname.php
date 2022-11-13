@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Model
+class Uname extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_user';
+    use HasFactory;
+    protected $primaryKey = 'id_nama';
     protected $keyType = 'string';
     public $timestamps = false;
-    protected $table = 'users';
-    protected $fillable = ['id_user','nama_user'];
+    protected $table = 'unames';
+    protected $fillable = ['id_nama','nama_usr'];
 }
