@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classes;
 use App\Models\Pelayanan;
 use App\Models\Talents;
-use App\Models\Users;
+use App\Models\Uname;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ClassesResource;
@@ -21,20 +21,20 @@ class ApiController extends Controller
     {
         // laravel show all data
         $classes = Classes::all();
-        $users = Users::all();
+        $uname = Uname::all();
         $pelayanan = Pelayanan::all();
         $talents = Talents::all();
         return response()->json([
             'data_class' => $classes,
-            'data_users' => $users,
+            'data_uname' => $uname,
             'data_pelayanan' => $pelayanan,
             'data_talents' => $talents
         ]);
     }
     // Users
-    public function index_users(){
-        $users = Users::all();
-        return response()->json($users);
+    public function index_uname(){
+        $uname = Uname::all();
+        return response()->json($uname);
     }
 
     // Classes
@@ -71,28 +71,28 @@ class ApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-     // User
-    public function store_user(Request $request){
-        $v_users = Validator::make($request->all(), [
-            'id_user' => 'required',
-            'nama_user' => 'required',
+    // Uname
+    public function store_uname(Request $request){
+        $v_uname = Validator::make($request->all(), [
+            'id_nama' => 'required',
+            'nama_usr' => 'required',
         ]);
-        if ($v_users->fails()) {
+        if ($v_uname->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => $v_users->errors()
+                'message' => $v_uname->errors()
             ], 400);
         }
-        $users = Users::create([
-            'id_user' => $request->id_user,
-            'nama_user' => $request->nama_user,
+        $uname = Uname::create([
+            'id_nama' => $request->id_nama,
+            'nama_usr' => $request->nama_usr,
         ]);
         return response()->json([
             'status' => 'success',
-            'message' => 'User berhasil ditambahkan'
+            'message' => 'Uname berhasil ditambahkan'
         ], 201);
     }
-    
+     
     // Talent
     public function store_talent(Request $request){
         $v_talents = Validator::make($request->all(), [
@@ -119,7 +119,7 @@ class ApiController extends Controller
     public function store_pelayanan(Request $request){
         $v_pel = Validator::make($request->all(), [
             'id_pel' => 'required',
-            'id_user' => 'required',
+            'id_nama' => 'required',
             'id_talent' => 'required',
             'id_kelas' => 'required',
             'tanggal_pelayanan' => 'required|date',
@@ -132,7 +132,7 @@ class ApiController extends Controller
         }
         $Pelayanans = Pelayanan::create([
             'id_pel' => $request->id_pel,
-            'id_user' => $request->id_user,
+            'id_nama' => $request->id_nama,
             'id_talent' => $request->id_talent,
             'id_kelas' => $request->id_kelas,
             'tanggal_pelayanan' => $request->tanggal_pelayanan,
@@ -176,16 +176,16 @@ class ApiController extends Controller
 
     // Users
     
-    public function show_user($id)
+    public function show_uname($id)
     {
-        $users = Users::find($id);
-        if (is_null($users)) {
+        $unames = Uname::find($id);
+        if (is_null($unames)) {
             return $this->sendError('user not found.');
         }
         return response()->json([
             "success" => true,
             "message" => "User berhasil ditemukan.",
-            "data" => $users
+            "data" => $unames
         ]);
     }
 
@@ -282,12 +282,12 @@ class ApiController extends Controller
     }
 
     // User
-    public function update_user(Request $request, Users $user)
+    public function update_uname(Request $request, Uname $uname)
     {
-        $user->update([
-                'nama_user'     => $request->nama_user
+        $uname->update([
+                'nama_usr'     => $request->nama_usr
         ]);
-        return new ClassesResource(true, 'Data User Berhasil Diubah!', $user);
+        return new ClassesResource(true, 'Data User Berhasil Diubah!', $uname);
     }
     /**
      * Remove the specified resource from storage.
@@ -315,13 +315,13 @@ class ApiController extends Controller
     public function destroy_talent(Talents $talent)
     {
         $talent->delete();
-        return new ClassesResource(true, 'Data Kelas Berhasil Dihapus!', $talent);
+        return new ClassesResource(true, 'Data talent Berhasil Dihapus!', $talent);
     }
 
     // User
-    public function destroy_user(Users $user)
+    public function destroy_uname(Uname $uname)
     {
-        $user->delete();
-        return new ClassesResource(true, 'Data Kelas Berhasil Dihapus!', $user);
+        $uname->delete();
+        return new ClassesResource(true, 'Data user Berhasil Dihapus!', $uname);
     }
 }
