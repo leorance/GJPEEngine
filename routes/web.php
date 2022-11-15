@@ -14,7 +14,10 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::view('/welcome', 'welcome');
+Route::get('generate', function () {
+    Artisan::call('migrate:fresh --seed');
+    return 'seeding success!';
+});
 // All values
 Route::get('api', [ApiController::class, 'index']);
 
