@@ -24,7 +24,7 @@ class PelayananFactory extends Factory
             'id_nama' => Uname::all()->random()->id_nama,
             'id_kelas' => Classes::all()->random()->id_kelas,
             'id_talent' => Talents::all()->random()->id_talent,
-            'tanggal_pelayanan' => $this->faker->date('2022-12-04')
+            'tanggal_pelayanan' => date(Carbon::now()->isoWeekday(7)->format('Y-m-d')),
         ];
     }
 }

@@ -16,7 +16,7 @@ use App\Http\Controllers\ApiController;
 
 Route::get('generate', function () {
     Artisan::call('migrate:fresh --seed');
-    return 'seeding success!';
+    return Redirect::to('http://localhost:3000/kelas/a');
 });
 // All values
 Route::get('api', [ApiController::class, 'index']);
