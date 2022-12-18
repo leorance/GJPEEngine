@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+// use function MongoDB\BSON\toJSON;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +21,8 @@ Route::get('generate', function () {
     Artisan::call('migrate:fresh --seed');
     return Redirect::to('http://localhost:3000/kelas/a');
 });
+
+Route::get('tanggal', [ApiController::class, 'weekOfDate']);
 // All values
 Route::get('api', [ApiController::class, 'index']);
 

@@ -324,4 +324,16 @@ class ApiController extends Controller
         $uname->delete();
         return new ClassesResource(true, 'Data user Berhasil Dihapus!', $uname);
     }
+
+    public function weekOfDate(){
+        $w1 = date('Y-m-d', strtotime("first sunday of this month"));
+        $w2 = date('Y-m-d', strtotime("second sunday of this month"));
+        $w3 = date('Y-m-d', strtotime("third sunday of this month"));
+        $w4 = date('Y-m-d', strtotime("fourth sunday of this month"));
+        $collection = array($w1, $w2, $w3, $w4);
+        // $mulai = Carbon::parse($collection)->format('Y-m-d');
+        // $data = $collection;
+        // $last = JSON.parse($data);
+        return response()->json($collection);
+    }
 }

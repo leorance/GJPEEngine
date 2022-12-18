@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
             ['id_talent' => 'T11', 'nama_talent' => 'Pendoa'],
             ['id_talent' => 'T12', 'nama_talent' => 'Bagian Absensi'],
         ]);
-        
+
         Pelayanan::factory(432)->create();
     }
 }
